@@ -9,26 +9,71 @@ import static org.junit.Assert.assertFalse;
 
 public class JobTest {
 
-    Job testJobOne;
-    Job testJobTwo;
+    Job emptyTestOne;
+    Job emptyTestTwo;
+    Job testJob;
     @Before
-    public void createJobObject() { testJobOne = new Job(); testJobTwo = new Job(); }
+    public void createJobObject() {
+        emptyTestOne = new Job();
+        emptyTestTwo = new Job();
+        testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    }
 
     @Test
     public void testSettingJobId() {
-        assertFalse(testJobOne.equals(testJobTwo));
+        assertFalse(emptyTestOne.equals(emptyTestTwo));
     }
 
     @Test
     public void testJobConstructorSetsAllFields() {
-        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertTrue(job instanceof Job);
+        assertTrue(testJob instanceof Job);
     }
 
     @Test
     public void testJobsForEquality() {
-        Job jobOne = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        Job jobTwo = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertFalse(jobOne.equals(jobTwo));
+        Job testJobTwo = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertFalse(testJob.equals(testJobTwo));
     }
+
+    @Test
+    public void jobToStringMethodReturnsTrue() {
+        assertEquals("ID: "+ testJob.getId() + "\n" +
+                        "Name: Product tester\n" +
+                        "Employer: ACME\n" +
+                        "Location: Desert\n" +
+                        "Position Type: Quality control\n" +
+                        "Core Competency: Persistence", testJob.toString()
+        );
+    }
+
+    @Test
+    public void jobWithEmptyStringFieldReturnsWithCorrectMessage() {
+        Job jobWithEmptyField = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals("ID: " + jobWithEmptyField.getId() + "\n" +
+                        "Name: Product tester\n" +
+                        "Employer: Data not available\n" +
+                        "Location: Desert\n" +
+                        "Position Type: Quality control\n" +
+                        "Core Competency: Persistence", jobWithEmptyField.toString()
+        );
+    }
+
+    @Test
+    public void jobWithNullFieldReturnsWithCorrectMessage() {
+        Job jobWithNullField = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals("ID: " + jobWithNullField.getId() + "\n" +
+                        "Name: Product tester\n" +
+                        "Employer: Data not available\n" +
+                        "Location: Desert\n" +
+                        "Position Type: Quality control\n" +
+                        "Core Competency: Persistence",
+                jobWithNullField.toString()
+        );
+    }
+
+    @Test
+    public void jobWithOnlyIdReturnsOopsMessage() {
+        assertEquals("OOPS! This job does not seem to exist.", emptyTestOne.toString() );
+    }
+
 }
