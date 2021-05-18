@@ -42,7 +42,7 @@ public class JobTest {
                         "Employer: ACME\n" +
                         "Location: Desert\n" +
                         "Position Type: Quality control\n" +
-                        "Core Competency: Persistence", testJob.toString()
+                        "Core Competency: Persistence\n", testJob.toString()
         );
     }
 
@@ -54,22 +54,10 @@ public class JobTest {
                         "Employer: Data not available\n" +
                         "Location: Desert\n" +
                         "Position Type: Quality control\n" +
-                        "Core Competency: Persistence", jobWithEmptyField.toString()
+                        "Core Competency: Persistence\n", jobWithEmptyField.toString()
         );
     }
 
-    @Test
-    public void jobWithNullFieldReturnsWithCorrectMessage() {
-        Job jobWithNullField = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals("ID: " + jobWithNullField.getId() + "\n" +
-                        "Name: Product tester\n" +
-                        "Employer: Data not available\n" +
-                        "Location: Desert\n" +
-                        "Position Type: Quality control\n" +
-                        "Core Competency: Persistence",
-                jobWithNullField.toString()
-        );
-    }
 
     @Test
     public void jobWithOnlyIdReturnsOopsMessage() {

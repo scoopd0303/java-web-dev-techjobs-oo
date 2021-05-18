@@ -50,6 +50,8 @@ public class Job {
     public String toString() {
         String returnedString = "";
 
+        ArrayList<JobField> fields = new ArrayList<>(Arrays.asList(employer, location, positionType, coreCompetency));
+
         if (name == null && employer == null && location == null && positionType == null && coreCompetency == null) {
             returnedString = "OOPS! This job does not seem to exist.";
         } else {
@@ -62,29 +64,14 @@ public class Job {
                 returnedString += "Name: " + this.getName() + "\n";
             }
 
-            if (this.employer.getValue() == "" || this.employer.getValue() == null) {
-                returnedString += "Employer: Data not available\n";
-            } else {
-                returnedString += "Employer: " + this.getEmployer() + "\n";
+            for (JobField field : fields) {
+                if (field.getValue() == "") {
+                    returnedString += field.returnClassNameAsString() + "Data not available\n";
+                } else {
+                    returnedString += field.returnClassNameAsString() + field.getValue() + "\n";
+                }
             }
 
-            if (this.location.getValue() == "" || this.location.getValue() == null) {
-                returnedString += "Location: Data not available\n";
-            } else {
-                returnedString += "Location: " + this.getLocation() + "\n";
-            }
-
-            if (this.positionType.getValue() == "" || this.positionType.getValue() == null) {
-                returnedString += "Position Type: Data not available\n";
-            } else {
-                returnedString += "Position Type: " + this.getPositionType() + "\n";
-            }
-
-            if (this.coreCompetency.getValue() == "" || this.coreCompetency.getValue() == null) {
-                returnedString += "Core Competency: Data not available\n";
-            } else {
-                returnedString += "Core Competency: " + this.getCoreCompetency();
-            }
         }
         return returnedString;
     }
