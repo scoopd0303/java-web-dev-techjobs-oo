@@ -12,11 +12,19 @@ public class JobTest {
     Job emptyTestOne;
     Job emptyTestTwo;
     Job testJob;
+
     @Before
     public void createJobObject() {
+
         emptyTestOne = new Job();
         emptyTestTwo = new Job();
-        testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        testJob = new Job("Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence"));
+
     }
 
     @Test
@@ -27,6 +35,11 @@ public class JobTest {
     @Test
     public void testJobConstructorSetsAllFields() {
         assertTrue(testJob instanceof Job);
+        assertEquals("Product tester", testJob.getName());
+        assertEquals("ACME", testJob.getEmployer().getValue());
+        assertEquals("Desert", testJob.getLocation().getValue());
+        assertEquals("Quality control", testJob.getPositionType().getValue());
+        assertEquals("Persistence", testJob.getCoreCompetency().getValue());
     }
 
     @Test
@@ -57,7 +70,6 @@ public class JobTest {
                         "Core Competency: Persistence\n", jobWithEmptyField.toString()
         );
     }
-
 
     @Test
     public void jobWithOnlyIdReturnsOopsMessage() {

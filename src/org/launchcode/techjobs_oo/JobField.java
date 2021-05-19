@@ -36,6 +36,8 @@ public abstract class JobField {
         return Objects.hash(id);
     }
 
+    abstract String returnClassNameAsString();
+
     // Getters and Setters:
 
     public int getId() {
@@ -50,6 +52,6 @@ public abstract class JobField {
         this.value = value;
     }
 
-    abstract String returnClassNameAsString();
+
 
 }

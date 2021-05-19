@@ -96,17 +96,4 @@ public class Job {
     public CoreCompetency getCoreCompetency() { return coreCompetency; }
     public void setCoreCompetency(CoreCompetency coreCompetency) { this.coreCompetency = coreCompetency; }
 
-//    HashMap<Object, String> fields = new HashMap<>();
-//    fields.put(employer, employer.getValue());
-//    fields.put(location, location.getValue());
-//    fields.put(positionType, positionType.getValue());
-//    fields.put(coreCompetency, coreCompetency.getValue());
-//    for (Map.Entry<Object, String> field : fields.entrySet()) {
-//        if (field.getValue() == "" || field.getValue() == null) {
-//            returnedString += String.format("%s: Data not available\n", field.getKey().toString());
-//        } else {
-//            returnedString += String.format("%s: %s\n", field.getKey().toString(), field.getValue());
-//        }
-//    }
-
 }
